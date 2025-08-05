@@ -1,18 +1,13 @@
-
-import './App.css'
-import './index.css'
 import React from 'react';
-import Button from '@mui/material/Button';
+import Home from './pages/Home';
+import Container from '@mui/material/Container';
 
-function App() {
+const App = () => {
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Hello, MUI 👋</h1>
-      <Button variant="contained" color="primary">
-        Click Me
-      </Button>
-    </div>
+    <Container maxWidth="md" sx={{ py: 5 }}>
+      <Home />
+    </Container>
   );
-}
+};
 
 export default App;
