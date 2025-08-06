@@ -7,6 +7,21 @@ import {
   Button,
   Box,
 } from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  IconButton,
+  TableFooter,
+
+
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const InvoiceForm = () => {
   const [invoiceData, setInvoiceData] = useState({
@@ -16,6 +31,11 @@ const InvoiceForm = () => {
     issueDate: '',
     dueDate: '',
   });
+
+  const [items, setItems] = useState([
+  { description: '', quantity: 1, price: 0 },
+]);
+
 
   const handleChange = (e) => {
     setInvoiceData({
@@ -108,6 +128,45 @@ const InvoiceForm = () => {
                   </Grid>
                 </Grid>
               </form>
+              <Typography variant="h6" sx={{ mt: 4, mb: 2 }}>
+  Invoice Items
+</Typography>
+<TableContainer component={Paper}>
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableCell>Description</TableCell>
+        <TableCell align="right">Quantity</TableCell>
+        <TableCell align="right">Price</TableCell>
+        <TableCell align="right">Total</TableCell>
+        <TableCell align="center">Actions</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {items.map((item, index) => (
+        <TableRow key={index}>
+          <TableCell>{item.description}</TableCell>
+          <TableCell align="right">{item.quantity}</TableCell>
+          <TableCell align="right">{item.price}</TableCell>
+          <TableCell align="right">{(item.quantity * item.price).toFixed(2)}</TableCell>
+          <TableCell align="center">
+            <IconButton aria-label="delete" size="small">
+              <DeleteIcon />
+            </IconButton>
+          </TableCell>
+        </TableRow>
+      ))}
+      <TableRow>
+        <TableCell colSpan={5} align="center">
+          <IconButton aria-label="add" size="small">
+            <AddIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
                       </Paper>
               </Box>
             );
